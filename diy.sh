@@ -18,13 +18,10 @@ sed -i "s/'UTC'/'CST-8'\n   set system.@system[-1].zonename='Asia\/Shanghai'/g" 
 # firewall custom
 #echo "iptables -t nat -I POSTROUTING -o eth0 -j MASQUERADE" >> package/network/config/firewall/files/firewall.user
 
-# Add luci-app-ssr-plus
+# Add luci-app-ssr-plus Passwall
 pushd package/lean
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
 git clone --depth=1 https://github.com/fw876/helloworld
-cat > helloworld/luci-app-ssr-plus/root/etc/ssrplus/black.list << EOF
-cloudflare.com
-heroku.com 
-EOF
 popd
 
 # Clone community packages to package/community
